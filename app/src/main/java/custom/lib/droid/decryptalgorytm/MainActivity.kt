@@ -15,9 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import custom.lib.droid.decrypt_helper.EncryptionHelper
 import custom.lib.droid.decryptalgorytm.ui.theme.DecryptAlgorytmTheme
+import custom.web.view.compose.UserWebView
 
 class MainActivity : ComponentActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val origText = "Hello World"
@@ -34,25 +35,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val encryptUrl = EncryptionHelper.encrypt("https://gitlab.com", EncryptionHelper.secretKey)
+                    UserWebView(data = EncryptionHelper.decrypt(encryptUrl, EncryptionHelper.secretKey))
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DecryptAlgorytmTheme {
-        Greeting("Android")
     }
 }

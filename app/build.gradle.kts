@@ -68,4 +68,5 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation(project(":decrypt-helper"))
+    implementation("com.github.TimofeyMaryin:ReleaseCustomView:1.0.0-alpha")
 }
